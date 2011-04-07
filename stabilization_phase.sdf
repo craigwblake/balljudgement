@@ -1,0 +1,24 @@
+# This is a custom set definition file
+# It is specified in the "Logfiles" tab
+
+#trial_start:	event_type == "Picture" and code == "ball1"
+#trial_end:		event_type == "Picture" and code == "fix"
+#response_type:	( shown_correct == "+50" or response_correct == "incorrect" ) and requested_duration == -1
+#feed_event:		code == "feedbk"
+#shown_type:		shown_correct == "correct" or shown_correct == "incorrect"
+
+response_set:		event_type == "Response"
+feedback_set:		feedback1 == "informative" or feedback1 == "non-informative" or feedback1 == "missed"
+
+resp_feed_set::	simple_match_all(-5000, 0, feedback_set, response_set)
+
+#event_table 		feedback_table( index, time, trial_time, subject_response, feedback1, feedback2)
+
+#print feedback_table( response_set, "\t", "\n" )
+#print feedback_table( feedback_set, "\t", "\n" )
+
+event_pair_table custom_pair_table( index, time2, trial_time2, subject_response1, feedback11, feedback21, time1 )
+print custom_pair_table( resp_feed_set, "\t", "\n" )
+
+#event_pair_table custom_pair_table( index, time1, subject_response1, feedback11, feedback21, time2 )
+#print custom_pair_table( resp_feed_set, "\t", "\n" )
