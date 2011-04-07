@@ -1,3 +1,4 @@
+
 # the task is to watch the movement of two balls and to judge which ball will arrive at the wall first
 # one session comprises 2 runs of n_max1 and n_max2 trials, resp.
 # in run 1 (adjustment phase) the program individually adjusts the difficulty of the task such that error rates will be around 30-40%
@@ -48,6 +49,9 @@ screen_height = 768;
 screen_bit_depth = 16;
 default_font_size = 20;
 
+stimulus_properties = subject_response, string, feedback1, string, feedback2, string;
+event_code_delimiter = "|";
+
 begin;
 
 picture {} default;
@@ -58,6 +62,7 @@ bitmap { filename = "corr_wob.bmp"; width = 80; height = 80; } correct;
 bitmap { filename = "err_wob.bmp"; width = 80; height = 80; } error;
 bitmap { filename = "miss_wob.bmp"; width = 80; height = 80; } miss;
 bitmap { filename = "nf_wob.bmp"; width = 80; height = 80; } nf;
+
 
 box { height = 500; width = 7; color = 200,200,200; } wall;
 text { caption = "Welche Kugel?"; } question;
@@ -153,6 +158,10 @@ trial {
     duration = 500;
     code = "feedbk_text";
   } feed_text;
+  stimulus_event {
+    nothing{};
+    code = "";
+  } response_info;
 } feedbk;
 
 trial {
