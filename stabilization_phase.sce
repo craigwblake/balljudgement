@@ -44,8 +44,8 @@ pulse_code = 255;
 active_buttons = 3;
 button_codes = 1, 2, 9;		# 9; 99 = key for start/continuation (e.g., SPACE)
 ### screen
-screen_width = 1024;			# screen requirements (if screen has lower resolution, change parameters in feedb2.pcl!!!
-screen_height = 768;
+screen_width = 800;			# screen requirements (if screen has lower resolution, change parameters in feedb2.pcl!!!
+screen_height = 600;
 screen_bit_depth = 16;
 default_font_size = 20;
 
@@ -58,11 +58,10 @@ picture {} default;
 
 bitmap { filename = "ball1wob.bmp"; } ball1;
 bitmap { filename = "ball2wob.bmp"; } ball2;
-bitmap { filename = "corr_wob.bmp"; width = 80; height = 80; } correct;
-bitmap { filename = "err_wob.bmp"; width = 80; height = 80; } error;
-bitmap { filename = "miss_wob.bmp"; width = 80; height = 80; } miss;
-bitmap { filename = "nf_wob.bmp"; width = 80; height = 80; } nf;
-
+bitmap { filename = "corr_wob.bmp"; width = 400; height = 400; } correct;
+bitmap { filename = "err_wob.bmp"; width = 400; height = 400; } error;
+bitmap { filename = "miss_wob.bmp"; width = 400; height = 400; } miss;
+bitmap { filename = "nf_wob.bmp"; width = 400; height = 400; } nf;
 
 box { height = 500; width = 7; color = 200,200,200; } wall;
 text { caption = "Welche Kugel?"; } question;

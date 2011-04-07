@@ -8,10 +8,10 @@ bool ADJUSTMENT_PHASE = false;
 
 # configuration constants:
 int TRG_PER_TRIAL = 9;			# trial length as a number of triggers
-double LEFT_MAX = -500.0;		# leftmost possible start position
+double LEFT_MAX = -500.0/1.28;		# leftmost possible start position
 double WALL_POS = -1.0*LEFT_MAX;	# wall position
-double START_WIDTH = -100.0 - LEFT_MAX;	# start range from LEFT_MAX to -100
-double MIN_S_DIFF = 50.0;		# minimal start position difference
+double START_WIDTH = -100.0/1.28 - LEFT_MAX;	# start range from LEFT_MAX to -100
+double MIN_S_DIFF = 50.0/1.28;		# minimal start position difference
 double MIN_V_DIFF = 0.1;		# minimal speed difference
 int N_MAX = 100;			# number of trials
 double UP_THRESHOLD = 0.4;		# uppermost error rate (for run 2)
@@ -318,7 +318,7 @@ sub
 begin
   response_info.set_event_code("missed|missed");
   symbol.set_part(1, miss);
-  score_text.set_caption("0");
+  score_text.set_caption("MISSED");
   score_text.redraw();
   feed_event.set_event_code("late");
   feedbk.present();
