@@ -13,7 +13,7 @@ double WALL_POS = -1.0*LEFT_MAX;	# wall position
 double START_WIDTH = -100.0/1.28 - LEFT_MAX;	# start range from LEFT_MAX to -100
 double MIN_S_DIFF = 50.0/1.28;		# minimal start position difference
 double MIN_V_DIFF = 0.1;		# minimal speed difference
-int N_MAX = 100;			# number of trials
+int N_MAX = 5;			# number of trials
 double UP_THRESHOLD = 0.4;		# uppermost error rate (for run 2)
 double LOW_THRESHOLD = 0.3;		# lowermost error rate
 double NON_INFORMATIVE_RATIO = (UP_THRESHOLD + LOW_THRESHOLD) / 2.0;
@@ -58,7 +58,7 @@ sub
   int next_int
 begin
   int num;
-  if (!script.end_of_file()) then
+  if (script.end_of_file()) then
     script.close();
     script.open("script.txt");
     num = script.get_int();
@@ -307,7 +307,7 @@ begin
   symbol.set_part(1, error);
   score_text.set_caption("-50");
   feed_event.set_event_code("error");
-  if !ADJUSTMENT_PHASE && next_int == 1 then
+  if !ADJUSTMENT_PHASE && next_int() == 1 then
     nf_err = nf_err + 1;
     symbol.set_part(1, nf);
     # 35% percent chance of showing that they were correct
