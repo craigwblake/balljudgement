@@ -52,18 +52,20 @@ int nf_err = 0;
 int score = 0;
 
 input_file script = new input_file;
-input.open("script.txt");
+script.open("script.txt");
 
 sub
   int next_int
 begin
-  if (!input.end_of_file()) then
-    input.close()
-    input.open("script.txt");
-    return get_int();
+  int num;
+  if (!script.end_of_file()) then
+    script.close();
+    script.open("script.txt");
+    num = script.get_int();
   else
-    return get_int();
+    num = script.get_int();
   end;
+  return num;
 end;
 
 sub
