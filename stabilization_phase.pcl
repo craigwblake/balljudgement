@@ -51,6 +51,21 @@ int nf_err = 0;
 
 int score = 0;
 
+input_file script = new input_file;
+input.open("script.txt");
+
+sub
+  int next_int
+begin
+  if (!input.end_of_file()) then
+    input.close()
+    input.open("script.txt");
+    return get_int();
+  else
+    return get_int();
+  end;
+end;
+
 sub
   wait_trg(int no_trg)
 begin
@@ -260,7 +275,7 @@ begin
   symbol.set_part(1, correct);
   score_text.set_caption("+50");
   feed_event.set_event_code("correct");
-  if !ADJUSTMENT_PHASE && random(1,2) == 1 then
+  if !ADJUSTMENT_PHASE && next_int() == 1 then
     nf_corr = nf_corr + 1;
     symbol.set_part(1, nf);
     # 35% percent chance of showing that they were correct
@@ -290,7 +305,7 @@ begin
   symbol.set_part(1, error);
   score_text.set_caption("-50");
   feed_event.set_event_code("error");
-  if !ADJUSTMENT_PHASE && random(1,2) == 1 then
+  if !ADJUSTMENT_PHASE && next_int == 1 then
     nf_err = nf_err + 1;
     symbol.set_part(1, nf);
     # 35% percent chance of showing that they were correct
