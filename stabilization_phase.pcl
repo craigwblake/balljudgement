@@ -7,7 +7,7 @@
 bool ADJUSTMENT_PHASE = false;
 
 # configuration constants:
-int TRG_PER_TRIAL = 9;			# trial length as a number of triggers
+int TRG_PER_TRIAL = 3;			# trial length as a number of triggers
 double LEFT_MAX = -500.0/1.28;		# leftmost possible start position
 double WALL_POS = -1.0*LEFT_MAX;	# wall position
 double START_WIDTH = -100.0/1.28 - LEFT_MAX;	# start range from LEFT_MAX to -100
@@ -21,7 +21,6 @@ double NON_INFORMATIVE_RATIO = (UP_THRESHOLD + LOW_THRESHOLD) / 2.0;
 int WINDOW = 20;			# number of trials in monitoring window
 
 # variables:
-int trg = 1;				# add offset (for start in fmri-emulation)
 double t_diff = 300.0;			# time difference at start 300 frames
 
 double td_stabil = 0.0;			# for calculation of t_diff starting point in run 2
@@ -71,7 +70,7 @@ end;
 sub
   wait_trg(int no_trg)
 begin
-  trg = trg + no_trg;
+  int trg = pulse_manager.main_pulse_count() + no_trg;
   loop
   until
     pulse_manager.main_pulse_count() >= trg
@@ -398,7 +397,7 @@ td_avr = t_diff;
 intro2.present();		# Present wait-for-trigger text.
 
 ### initial fixation before each run
-wait_trg(0);			# wait for 1st trigger
+wait_trg(1);			# wait for 1st trigger
 
 fix.set_duration(next_picture);
 fix.set_event_code("initial_fix: 10000");
