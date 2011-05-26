@@ -43,8 +43,8 @@ pulse_code = 255;
 active_buttons = 3;
 button_codes = 1, 2, 9;		# 9; 99 = key for start/continuation (e.g., SPACE)
 ### screen
-screen_width = 1024;			# screen requirements (if screen has lower resolution, change parameters in feedb2.pcl!!!
-screen_height = 768;
+screen_width = 800;			# screen requirements (if screen has lower resolution, change parameters in feedb2.pcl!!!
+screen_height = 600;
 screen_bit_depth = 16;
 default_font_size = 20;
 

@@ -32,7 +32,7 @@ pcl_file = "stabilization_phase.pcl";
 
 ### fmri settings
 scenario_type = fMRI_emulation;		# change for real fMRI experiment!
-scan_period = 1000;			# TR in ms
+scan_period = 1500;			# TR in ms
 pulses_per_scan = 1;
 sequence_interrupt = false;		# a sequence of events with a given mri_pulse number can be
 					# interrupted by the occurance of a later main pulse with an

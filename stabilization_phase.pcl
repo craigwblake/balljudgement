@@ -7,7 +7,7 @@
 bool ADJUSTMENT_PHASE = false;
 
 # configuration constants:
-int TRG_PER_TRIAL = 3;			# trial length as a number of triggers
+int TRG_PER_TRIAL = 1;			# trial length as a number of triggers
 double LEFT_MAX = -500.0/1.28;		# leftmost possible start position
 double WALL_POS = -1.0*LEFT_MAX;	# wall position
 double START_WIDTH = -100.0/1.28 - LEFT_MAX;	# start range from LEFT_MAX to -100
@@ -102,7 +102,10 @@ begin
     nn > SCHEDULE_OF_NULL_EVENTS.count()
   begin
     if (SCHEDULE_OF_NULL_EVENTS[nn] == n) then
-      show_fixation_cross(next_picture);
+		fix.set_duration(next_picture);
+		fix.set_event_code("fix");
+		fixation.present();
+		wait_trg(TRG_PER_TRIAL*5);
     end;
     nn = nn + 1;
   end;
@@ -402,7 +405,7 @@ wait_trg(1);			# wait for 1st trigger
 fix.set_duration(next_picture);
 fix.set_event_code("initial_fix: 10000");
 fixation.present();
-wait_trg(1);			# wait for 1s (first trial will wait another 9s before starting)
+wait_trg(4);			# wait before starting
 
 ###### start run #####
 loop
@@ -415,7 +418,7 @@ begin
   if ADJUSTMENT_PHASE then
     show_fixation_cross(next_picture);
   else
-    fix_dur = 3500.0 + (50.0* double(int(random()*10.0 + 0.5)));  	# fixation varies from 3500 to 4000 ms
+    fix_dur = 2500.0 + (50.0* double(int(random()*10.0 + 0.5)));  	# fixation varies from 3500 to 4000 ms
     show_fixation_cross(int(fix_dur));
   end;
   compute_new_speed_and_position();
